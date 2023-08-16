@@ -1,0 +1,55 @@
+# Default values for app.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  # Link to your container registry. You will launch it in Yandex Cloud.
+  repository: "cr.yandex/crp30ua7as0km9dmdg2j/service_dm"
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "v2023-08-16-r1"
+
+containerPort: 5000
+
+config:
+  EXAMPLE_ENV1: "value"
+  EXAMPLE_ANOTHER_ENV2: "value"
+  KAFKA_HOST: "rc1a-ld082m4b80tosuuj.mdb.yandexcloud.net"
+  KAFKA_PORT: 9091
+  KAFKA_CONSUMER_USERNAME: "producer_consumer"
+  KAFKA_CONSUMER_PASSWORD: "producer_consumer"
+  KAFKA_CONSUMER_GROUP: "test-consumer1"
+  KAFKA_SOURCE_TOPIC: "dds-service-orders"
+  KAFKA_DDS_SERVICE_ORDERS_TOPIC: "dm-service-orders"
+
+  PG_WAREHOUSE_HOST: "rc1b-4yxn53mdcj0n9p1s.mdb.yandexcloud.net"
+  PG_WAREHOUSE_PORT: 6432
+  PG_WAREHOUSE_DBNAM: "sprint9dwh"
+  PG_WAREHOUSE_USER: "admin123"
+  PG_WAREHOUSE_PASSWORD: "admin123"
+
+  REDIS_HOST: "c-c9qeb5ep0erda60cb1us.rw.mdb.yandexcloud.net"
+  REDIS_PORT: 6380
+  REDIS_PASSWORD: "456456456a"
+
+  KUBECONFIG: "https://storage.yandexcloud.net/kubeconfig/kubeconfig"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+resources:
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
